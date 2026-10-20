@@ -1,6 +1,7 @@
 ## Unreleased
 
 * Android: migrate to AGP 9 built-in Kotlin (stop applying `kotlin-android`). Requires Flutter 3.44+.
+* Android: report `getData` read permission denials and native exceptions as `HEALTH_CONNECT_ERROR` instead of empty data. Successful empty reads still return an empty list.
 
 ## 13.3.2
 
