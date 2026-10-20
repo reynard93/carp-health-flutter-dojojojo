@@ -123,7 +123,7 @@ class HealthDataReader(
                             }
                         }
                     }
-                }
+                } ?: throw SecurityException("Read permission denied for $dataType")
                 Handler(context.mainLooper).run { result.success(healthConnectData) }
             } catch (e: Exception) {
                 Log.i(
@@ -131,7 +131,7 @@ class HealthDataReader(
                     "Unable to return $dataType due to the following exception:"
                 )
                 Log.e("FLUTTER_HEALTH::ERROR", Log.getStackTraceString(e))
-                result.success(emptyList<Map<String, Any?>>()) // Return empty list instead of null
+                result.error("HEALTH_CONNECT_ERROR", e.message, null)
             }
         }
     }
